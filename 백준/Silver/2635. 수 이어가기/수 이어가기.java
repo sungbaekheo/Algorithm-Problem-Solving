@@ -23,6 +23,9 @@ public class Main {
                 maxCount = count;
                 answer = numList;
             }
+            if(count<maxCount){
+                break;
+            }
         }
         System.out.println(maxCount);
         System.out.println(answer);
