@@ -14,17 +14,9 @@ public class Main {
                 b = len/i;
             }
         }
-        char[][] mm = new char[a][b];
-        for(int j=0; j<b; j++){
-            for(int i=0; i<a; i++){
-                mm[i][j] = msg.charAt(i+(j*a));
-            }
-            
-        }
-
         for(int i=0; i<a; i++){
             for(int j=0; j<b; j++){
-                System.out.print(mm[i][j]);
+                System.out.print(msg.charAt(i+(j*a)));
             }
         }
     }
