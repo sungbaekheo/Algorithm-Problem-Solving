@@ -23,9 +23,8 @@ public class Solution {
 					nStick++;
 				// ")"를 만날 경우 기존의 쇠막대기 개수만큼 더했다가 겹치는 만큼 다시 빼줌
 				} else {
-					pieces+=nStick;
+					pieces++;
 					nStick--;
-					pieces-=nStick;
 				}
 			}
 			System.out.printf("#%d %d\n", t, pieces);
