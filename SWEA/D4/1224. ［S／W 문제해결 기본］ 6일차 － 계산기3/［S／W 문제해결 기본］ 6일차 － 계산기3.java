@@ -1,8 +1,18 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class Solution {
 	public static void main(String[] args) {
+		Map<Character, Integer> priority = new HashMap<Character, Integer>();
+		priority.put('(', 4);
+		priority.put('^', 3);
+		priority.put('*', 2);
+		priority.put('/', 2);
+		priority.put('+', 1);
+		priority.put('-', 1);
+		
 		Scanner sc = new Scanner(System.in);
 		Stack<Integer> numbers = new Stack<>();
 		Stack<Character> operators = new Stack<>();
@@ -16,21 +26,14 @@ public class Solution {
 				if(c >= 48 && c <= 57) {
 					trans+=c;
 				} else {
-					if(c == '(') {
-						operators.push(c);
-					} else if(c == ')') {
+					if(c == ')') {
 						while(!operators.isEmpty() && operators.peek() != '(') {
 							trans+= operators.pop();
 						}
 						operators.pop();
-					} else if( c == '*' || c == '/') {
-						while(!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '/')) {
+					} else {
+						while(!operators.isEmpty() && (priority.get(operators.peek()) >= priority.get(c)) && operators.peek() != '(') {
 							trans+= operators.pop();
-						}
-						operators.push(c);
-					} else if(c == '+' || c == '-') {
-						while(!operators.isEmpty() && operators.peek() != '(') {
-							trans+=operators.pop();
 						}
 						operators.push(c);
 					}
@@ -52,6 +55,7 @@ public class Solution {
 						case '-': numbers.push(num1-num2); break;
 						case '*': numbers.push(num1*num2); break;
 						case '/': numbers.push(num1/num2); break;
+						case '^': numbers.push((int) Math.pow(num1, num2)); break;
 					}
 				}
 			}
