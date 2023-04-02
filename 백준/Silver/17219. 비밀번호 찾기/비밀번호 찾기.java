@@ -26,7 +26,9 @@ public class Main {
 
         for(int i=0; i<M; i++){
             String str = br.readLine();
-            System.out.println(map.get(str));
+            sb.append(map.get(str)).append("\n");
         }
+        bw.write(sb.toString());
+        bw.close();
     }
 }
