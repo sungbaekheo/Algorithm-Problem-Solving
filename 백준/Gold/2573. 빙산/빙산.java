@@ -1,7 +1,9 @@
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 	static int row;
@@ -12,16 +14,18 @@ public class Main {
 	static int gCnt = 0;
 	static int year = -1;
 	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		row = sc.nextInt();
-		col = sc.nextInt();
+		row = Integer.parseInt(st.nextToken());
+		col = Integer.parseInt(st.nextToken());
 		glacier = new int[row][col];
 		
 		for(int r=0; r<row; r++) {
+			st = new StringTokenizer(br.readLine());
 			for(int c=0; c<col; c++) {
-				glacier[r][c] = sc.nextInt();
+				glacier[r][c] = Integer.parseInt(st.nextToken());
 			}
 		}
 		
