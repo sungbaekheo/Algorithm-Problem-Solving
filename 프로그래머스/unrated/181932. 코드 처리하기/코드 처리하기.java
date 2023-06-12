@@ -4,24 +4,13 @@ class Solution {
         
         int mode = 0;
         for(int i=0; i<code.length(); i++){
-            char chr = code.charAt(i);
-            
-            if(mode == 0){
-                if(chr != '1'){
-                    if(i%2 == 0){
-                        answer+=chr;
-                    }
-                } else {
-                    mode = 1;
-                }
-            } else {
-                if(chr != '1'){
-                    if(i%2 == 1){
-                        answer+=chr;
-                    }
-                } else {
-                    mode = 0;
-                }
+            char ch = code.charAt(i);
+            if(ch == '1'){
+                mode = 1 - mode;
+            } else if(mode == 0 && i%2 == 0){
+                answer+=ch;
+            } else if(mode == 1 && i%2 == 1){
+                answer+=ch;
             }
         }
         if(answer.equals("")){
