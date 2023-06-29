@@ -15,8 +15,7 @@ class Solution {
                 }
                 sum+=sequence[end];
             } else if(sum>k){
-                sum-=sequence[start];
-                start++;
+                sum-=sequence[start++];
             } else {
                 int tempLen = end-start+1;
                 
@@ -25,8 +24,7 @@ class Solution {
                     answer[0] = start;
                     answer[1] = end;
                 }
-                sum-=sequence[start];
-                start++;
+                sum-=sequence[start++];
             }
         }
         
