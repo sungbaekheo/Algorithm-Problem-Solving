@@ -21,9 +21,9 @@ class Solution {
             String[] privacy = privacies[p].split(" ");
             LocalDate agreeDate = LocalDate.parse(privacy[0].replace(".", "-"));
             String termKind = privacy[1];
-            LocalDate limitDate = agreeDate.plusMonths(periods.get(termKind));
+            LocalDate limitDate = agreeDate.plusMonths(periods.get(termKind)).minusDays(1);
 
-            if(todayDate.isAfter(limitDate) || todayDate.equals(limitDate)){
+            if(todayDate.isAfter(limitDate)){
                 tempAnswer.add(p+1);
             }
         }
