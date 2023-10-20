@@ -5,33 +5,32 @@ class Solution {
     public int solution(String[] want, int[] number, String[] discount) {
         int answer = 0;
         Map<String, Integer> wishList = new HashMap<>();
-  
-        for(int i=0; i<=discount.length-10; i++){
-            
-            for(int j=0; j<want.length; j++){
-                wishList.put(want[j], number[j]);
-            }
-            
-            for(int j=i; j<10+i; j++){
-                String curr = discount[j];
-                if(wishList.getOrDefault(curr, -1) == -1){
-                    break;
-                }
-                
-                wishList.replace(curr, wishList.get(curr)-1);
-            }
-            
-            if(isSatisfied(want, wishList)){
+        int left = 0;
+        int right = 9;
+        
+        for(int i=left; i<=right; i++){
+            wishList.put(discount[i], wishList.getOrDefault(discount[i], 0)+1);
+        }
+        
+        while(right<discount.length){
+            if(isSatisfied(want, number, wishList)){
                 answer++;
             }
+            
+            right++;
+            if(right < discount.length){
+                wishList.put(discount[right], wishList.getOrDefault(discount[right], 0)+1);
+            }
+            wishList.put(discount[left], wishList.get(discount[left])-1);
+            left++;
         }
         
         return answer;
     }
     
-    public boolean isSatisfied(String[] want, Map<String, Integer> wishList){
-        for(String stuff : want){
-            if(wishList.get(stuff) != 0){
+    public boolean isSatisfied(String[] want, int[] number, Map<String, Integer> wishList){
+        for(int i=0; i<want.length; i++){
+            if(wishList.getOrDefault(want[i], 0) != number[i]){
                 return false;
             }
         }
